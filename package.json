@@ -1,0 +1,42 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm-run-all clean transpile",
+    "serve": "node dist/index.js",
+    "start": "nodemon --inspect src/index.js --exec babel-node",
+    "start:dev": "npm run start",
+    "transpile": "babel src --ignore node_modules --copy-files  --out-dir dist",
+    "clean": "rimraf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.16.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "babel-loader": "^8.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^8.1.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.14",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.61.0"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src/*"
+    ]
+  }
+}

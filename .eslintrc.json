@@ -1,0 +1,54 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "google"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+       "semi": [
+              "warn",
+              "always"
+       ],
+       "quotes": [
+              "warn",
+              "single"
+       ],
+       "no-unused-vars": [
+              "warn",
+              {
+                     "vars": "all",
+                     "args": "after-used",
+                     "ignoreRestSiblings": false
+              }
+       ],
+       "function-paren-newline": [
+              "warn",
+              {
+                     "minItems": 3
+              }
+       ],
+       "max-len": [
+              "warn",
+              {
+                     "ignoreRegExpLiterals": true,
+                     "code": 80,
+                     "tabWidth": 4,
+                     "ignoreComments": true,
+                     "ignoreUrls": true,
+                     "ignoreStrings": true
+              }
+       ],
+       "new-cap": [
+              "error",
+              {
+                     "properties": false
+              }
+       ]
+    }
+}
