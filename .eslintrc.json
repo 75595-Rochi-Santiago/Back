@@ -49,6 +49,7 @@
               {
                      "properties": false
               }
-       ]
+       ],
+       "linebreak-style": "windows"
     }
 }
