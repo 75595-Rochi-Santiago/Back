@@ -10,6 +10,7 @@ class Server {
     // path endpoints
     this.usersPath='/api/users';
     this.authPath='/api/auth';
+    this.phrasesPath='/api/phrases'
 
     //ConnectDB
     this.connectDB()
@@ -34,6 +35,7 @@ class Server {
   routes(){
          this.app.use(this.authPath,require('../routes/auth'));
          this.app.use(this.usersPath,require('../routes/users'));
+         this.app.use(this.phrasesPath,require('../routes/phrases'));
 
   }
   listen(){
