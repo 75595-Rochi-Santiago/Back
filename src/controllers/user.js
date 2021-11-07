@@ -6,7 +6,7 @@ const User=require('../models/user');
 
 const getUsers=async (req=request, res=response)=> {
        const {from=0, to=5}=req.query;
-       const query={estado:true};
+       const query={state:true};
        const [total,users] = await Promise.all([
               User.countDocuments(query),
               User.find(query)
@@ -35,7 +35,7 @@ const putUser=async (req, res=response)=> {
        const {_id,password,mail,...others}=req.body;
        if(password){
               const salt=bcryptjs.genSaltSync();
-              resto.password=bcryptjs.hashSync(password, salt);
+              others.password=bcryptjs.hashSync(password, salt);
        }
        const user=await User.findByIdAndUpdate(id,others);
        res.json(user);

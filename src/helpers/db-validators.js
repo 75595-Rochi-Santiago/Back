@@ -13,8 +13,8 @@ const validRole = async(role = '') => {
 
 //Check if the mail exists
 const mailExists = async( mail = '' ) => {
-    const emailExists = await User.findOne({ mail });
-    if ( emailExists ) {
+    const mailExists = await User.findOne({ mail });
+    if ( mailExists ) {
         throw new Error(`This mail: ${ mail }, is already registered`);
     }
 }

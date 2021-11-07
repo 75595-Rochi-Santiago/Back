@@ -6,22 +6,22 @@ const { generateJWT } = require('../helpers/generate_jwt');
 
 const login = async(req, res = response) => {
 
-    const { email, password } = req.body;
+    const { mail, password } = req.body;
 
     try {
       
-        // email verify
-        const user = await User.findOne({ email });
+        // mail verify
+        const user = await User.findOne({ mail });
         if ( !user ) {
             return res.status(400).json({
-                msg: 'Incorrect user or password'
+                msg: 'Incorrect user or password -mail'
             });
         }
 
         // user verify
-        if ( !user.estado ) {
+        if ( !user.state ) {
             return res.status(400).json({
-                msg: 'Incorrect user or password'
+                msg: 'Incorrect user or password -state'
             });
         }
 
@@ -29,7 +29,7 @@ const login = async(req, res = response) => {
         const validatePassword = bcryptjs.compareSync( password, user.password );
         if ( !validatePassword ) {
             return res.status(400).json({
-                msg: 'Incorrect user or password'
+                msg: 'Incorrect user or password -pass'
             });
         }
 
@@ -44,7 +44,7 @@ const login = async(req, res = response) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: 'Hable con el administrador'
+            msg: 'Internal server error'
         });
     }   
 

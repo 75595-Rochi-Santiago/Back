@@ -1,5 +1,5 @@
-const cors=require('cors');
 const express=require('express');
+const cors=require('cors');
 const {dbConnection}=require('../db/config')
 
 class Server {
@@ -9,7 +9,7 @@ class Server {
 
     // path endpoints
     this.usersPath='/api/users';
-    this.authPath='api/auth';
+    this.authPath='/api/auth';
 
     //ConnectDB
     this.connectDB()

@@ -1,7 +1,6 @@
 
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { validateFields } = require('../middlewares/validateFields');
 const { validRole, mailExists, userExistsById } = require('../helpers/db-validators');
 const {        
        getUsers,
@@ -11,11 +10,11 @@ const {
        patchUsers
         } = require('../controllers/user');
 
-
+const {validateFields,validateJWT}= require('../middlewares');
 
 const router = Router();
 
-//Get users
+//Get users paged
 router.get('/', getUsers );
 
 router.put('/:id',[
@@ -29,7 +28,7 @@ router.put('/:id',[
 router.post('/',[
     check('name', 'The name is required').not().isEmpty(),
     check('password', 'The password must be more than 6 characters').isLength({ min: 6 }),
-    check('mail', 'The email is not valid').isEmail(),
+    check('mail', 'The mail is not valid').isEmail(),
     check('mail').custom( mailExists ),
     check('role').custom(validRole),
     validateFields
@@ -45,6 +44,7 @@ router.put('/:id',[
 
 //Delete User
 router.delete('/:id',[
+    validateJWT,
     check('id', 'Not a valid ID').isMongoId(),
     check('id').custom( userExistsById ),
     validateFields
