@@ -8,7 +8,8 @@ class Server {
     this.port=process.env.PORT;
 
     // path endpoints
-    this.usersPath='/api/usuarios';
+    this.usersPath='/api/users';
+    this.authPath='api/auth';
 
     //ConnectDB
     this.connectDB()
@@ -31,7 +32,9 @@ class Server {
     this.app.use(express.json());
   }
   routes(){
-         this.app.use(this.usersPath,require('../routes/users'))
+         this.app.use(this.authPath,require('../routes/auth'));
+         this.app.use(this.usersPath,require('../routes/users'));
+
   }
   listen(){
          this.app.listen(this.port,()=>{
