@@ -14,6 +14,7 @@ const login = async(req, res = response) => {
         const user = await User.findOne({ mail });
         if ( !user ) {
             return res.status(400).json({
+                   ok:false,
                 msg: 'Incorrect user or password -mail'
             });
         }
@@ -21,6 +22,7 @@ const login = async(req, res = response) => {
         // user verify
         if ( !user.state ) {
             return res.status(400).json({
+                   ok:false,
                 msg: 'Incorrect user or password -state'
             });
         }
@@ -29,7 +31,8 @@ const login = async(req, res = response) => {
         const validatePassword = bcryptjs.compareSync( password, user.password );
         if ( !validatePassword ) {
             return res.status(400).json({
-                msg: 'Incorrect user or password -pass'
+               ok:false,
+               msg: 'Incorrect user or password -pass'
             });
         }
 
@@ -38,7 +41,8 @@ const login = async(req, res = response) => {
 
         res.json({
             user,
-            token
+            token,
+            ok:true
         })
 
     } catch (error) {
@@ -49,9 +53,21 @@ const login = async(req, res = response) => {
     }   
 
 }
+const revalidateToken = async(req, res = response) => {
 
+       const {uid,name}=req;
+
+       const token= await generateJWT(uid);
+       res.json({
+              ok:true,
+              uid,
+              name,
+              token
+       })
+}
 
 
 module.exports = {
-    login
+    login,
+    revalidateToken
 }
