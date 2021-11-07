@@ -11,6 +11,7 @@ class Server {
     this.usersPath='/api/users';
     this.authPath='/api/auth';
     this.phrasesPath='/api/phrases'
+    this.photosPath='/api/photos'
 
     //ConnectDB
     this.connectDB()
@@ -36,6 +37,7 @@ class Server {
          this.app.use(this.authPath,require('../routes/auth'));
          this.app.use(this.usersPath,require('../routes/users'));
          this.app.use(this.phrasesPath,require('../routes/phrases'));
+         this.app.use(this.photosPath, require('../routes/photos'))
 
   }
   listen(){
