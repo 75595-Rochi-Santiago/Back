@@ -1,5 +1,4 @@
 
-rojo, azulao, azul, mas azul, morado
 const getDataPage = (images, offset, limit ) => {
        const size=images.length
        let previous='';
