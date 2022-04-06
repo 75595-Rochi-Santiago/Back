@@ -3,6 +3,7 @@ const getDataPage = (images, offset, limit ) => {
        const size=images.length
        let previous='';
        let next='';
+       let prevOffset;
        offset<limit?prevOffset=0:prevOffset=parseInt(offset)-10;
 
        (parseInt(offset)+parseInt(limit))>=(size)
